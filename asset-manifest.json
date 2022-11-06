@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b6809f75.css",
+    "main.js": "/static/js/main.78078eb8.js",
+    "static/media/3diso-bold.ttf": "/static/media/3diso-bold.4d5c37f6053146129f24.ttf",
+    "static/media/GeneralSans-Regular.ttf": "/static/media/GeneralSans-Regular.6d91885b9c7fa66bdd05.ttf",
+    "static/media/instagram.png": "/static/media/instagram.e719d8b29f452a16302d.png",
+    "static/media/GeneralSans-Regular.woff": "/static/media/GeneralSans-Regular.c8cfd56b3d5c42904672.woff",
+    "static/media/GeneralSans-Regular.woff2": "/static/media/GeneralSans-Regular.33c07568e483102927ef.woff2",
+    "static/media/github.png": "/static/media/github.648e666260ca9d409a49.png",
+    "static/media/unbutton.ttf": "/static/media/unbutton.631fa5fecc81d47a0d08.ttf",
+    "static/media/gmail.png": "/static/media/gmail.a2f2146f929409405da0.png",
+    "static/media/linkedin.png": "/static/media/linkedin.f249b38224ca41a0b909.png",
+    "static/media/line.otf": "/static/media/line.1ec2b42ed4a21e0bd188.otf",
+    "index.html": "/index.html",
+    "main.b6809f75.css.map": "/static/css/main.b6809f75.css.map",
+    "main.78078eb8.js.map": "/static/js/main.78078eb8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6809f75.css",
+    "static/js/main.78078eb8.js"
+  ]
+}
