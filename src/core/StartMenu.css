@@ -14,20 +14,18 @@
     bottom: 48px;
     left: 4px;
     display: flex;
-    width: 410px;
-    height: 500px;
+    width: 480px;
+    /* Wider start menu */
+    height: 520px;
     border-radius: 8px 8px 0 8px;
     overflow: hidden;
     z-index: 9999;
-    /* Glass effect */
-    background: linear-gradient(to bottom,
-            rgba(30, 60, 90, 0.95) 0%,
-            rgba(20, 45, 70, 0.98) 100%);
+    /* Transparent parent - each column has its own background */
+    background: transparent;
     border: 1px solid rgba(120, 160, 200, 0.5);
     box-shadow:
         0 0 0 1px rgba(0, 0, 0, 0.3),
-        0 8px 32px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 /* Left Column */
@@ -40,9 +38,8 @@
 }
 
 .start-menu__apps {
-    flex: 0 0 auto;
+    flex: 1;
     padding: 8px 4px;
-    max-height: 280px;
     overflow-y: auto;
 }
 
@@ -146,124 +143,205 @@
     font-size: 12px;
 }
 
-/* Right Column */
+/* Right Column - TRANSLUCENT with Glass Effect */
 .start-menu__right {
     width: 45%;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to bottom,
-            rgba(60, 100, 140, 0.5) 0%,
-            rgba(40, 70, 100, 0.5) 100%);
+    padding: 0;
+    position: relative;
+    /* Translucent Right Pane Gradient */
+    background: linear-gradient(to right,
+            rgba(30, 60, 90, 0.75) 0%,
+            rgba(25, 50, 80, 0.75) 100%);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    /* Glass blur effect */
 }
 
 .start-menu__user {
     display: flex;
     align-items: center;
-    padding: 12px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 18px 16px 12px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.start-menu__user:hover .start-menu__user-avatar {
+    filter: brightness(1.1);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .start-menu__user-avatar {
     width: 48px;
     height: 48px;
-    background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
+    background: #d8d8d8;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    font-size: 32px;
     margin-right: 12px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    /* User Picture Frame Look */
+    border: 2px solid rgba(240, 240, 240, 0.8);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.5),
+        inset 0 0 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.start-menu__user-avatar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
 }
 
 .start-menu__user-name {
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 400;
     color: white;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5), 0 0 10px rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.3px;
 }
 
 .start-menu__links {
     flex: 1;
-    padding: 8px 0;
+    padding: 0 8px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .start-menu__link {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 6px 16px;
-    border: none;
-    background: transparent;
+    padding: 4px 12px;
+    /* Aggressive Reset for 7.css overrides */
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    min-width: 0;
+
     text-align: left;
     cursor: pointer;
-    transition: background-color 0.1s;
+    border-radius: 2px;
+    position: relative;
+    color: white;
+    margin-bottom: 2px;
+    font-family: inherit;
+    text-transform: none;
 }
 
+/* Remove pseudo-elements that might add borders/gradients */
+.start-menu__link::before,
+.start-menu__link::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Clean Hover Effect - No Outlines */
 .start-menu__link:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
 }
 
 .start-menu__link-icon {
-    font-size: 18px;
-    margin-right: 10px;
-    width: 24px;
-    text-align: center;
+    display: none;
 }
 
 .start-menu__link-name {
-    font-size: 12px;
-    color: white;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    font-size: 13px;
+    color: #e0e0e0;
+    font-weight: 400;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-/* Shutdown */
+/* Shutdown Section */
 .start-menu__shutdown {
     display: flex;
-    padding: 8px 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.15);
+    padding: 12px 16px 16px;
+    margin-top: auto;
+    justify-content: flex-end;
+    gap: 2px;
 }
 
 .start-menu__shutdown-btn {
-    flex: 1;
-    padding: 6px 16px;
-    border: none;
-    border-radius: 3px 0 0 3px;
+    padding: 4px 14px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #3c4e66;
+    border-radius: 2px 0 0 2px;
+    /* Glossy Shutdown Button Gradient */
     background: linear-gradient(to bottom,
-            rgba(80, 120, 160, 0.8) 0%,
-            rgba(50, 80, 120, 0.9) 100%);
+            rgba(100, 140, 190, 0.8) 0%,
+            rgba(60, 100, 160, 0.8) 50%,
+            rgba(40, 80, 140, 0.8) 50%,
+            rgba(30, 70, 130, 0.8) 100%);
     color: white;
-    font-size: 12px;
+    font-size: 11px;
     cursor: pointer;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(100, 140, 180, 0.5);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    transition: all 0.1s;
 }
 
 .start-menu__shutdown-btn:hover {
     background: linear-gradient(to bottom,
-            rgba(100, 150, 200, 0.9) 0%,
-            rgba(70, 110, 160, 1) 100%);
+            rgba(130, 170, 220, 0.9) 0%,
+            rgba(80, 120, 180, 0.9) 50%,
+            rgba(60, 100, 160, 0.9) 50%,
+            rgba(50, 90, 150, 0.9) 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 3px rgba(255, 255, 255, 0.3);
 }
 
 .start-menu__shutdown-arrow {
-    padding: 6px 8px;
-    border: none;
-    border-radius: 0 3px 3px 0;
+    width: 20px;
+    height: 26px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #3c4e66;
+    border-left: none;
+    border-radius: 0 2px 2px 0;
     background: linear-gradient(to bottom,
-            rgba(80, 120, 160, 0.8) 0%,
-            rgba(50, 80, 120, 0.9) 100%);
+            rgba(100, 140, 190, 0.8) 0%,
+            rgba(60, 100, 160, 0.8) 50%,
+            rgba(40, 80, 140, 0.8) 50%,
+            rgba(30, 70, 130, 0.8) 100%);
     color: white;
     font-size: 8px;
     cursor: pointer;
-    border: 1px solid rgba(100, 140, 180, 0.5);
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 1px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    transition: all 0.1s;
 }
 
 .start-menu__shutdown-arrow:hover {
     background: linear-gradient(to bottom,
-            rgba(100, 150, 200, 0.9) 0%,
-            rgba(70, 110, 160, 1) 100%);
+            rgba(130, 170, 220, 0.9) 0%,
+            rgba(80, 120, 180, 0.9) 50%,
+            rgba(60, 100, 160, 0.9) 50%,
+            rgba(50, 90, 150, 0.9) 100%);
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.4),
+        0 0 3px rgba(255, 255, 255, 0.3);
 }

@@ -51,13 +51,14 @@ const StartMenu = ({ isOpen, onClose }: StartMenuProps) => {
                 {/* Left Column - Apps */}
                 <div className="start-menu__left">
                     {/* Pinned Apps */}
+                    {/* Combined Apps List */}
                     <div className="start-menu__apps">
+                        {/* Pinned Apps */}
                         {pinnedApps.map((app) => (
                             <button
                                 key={app.id}
                                 className="start-menu__app"
                                 onClick={() => {
-                                    // Try to open from registry, otherwise just close
                                     const regApp = appRegistry.find(a => a.id === app.id);
                                     if (regApp) {
                                         handleAppClick(regApp.id, regApp.title, regApp.defaultSize);
@@ -70,13 +71,8 @@ const StartMenu = ({ isOpen, onClose }: StartMenuProps) => {
                                 <span className="start-menu__app-name">{app.name}</span>
                             </button>
                         ))}
-                    </div>
 
-                    {/* Separator */}
-                    <div className="start-menu__separator" />
-
-                    {/* Portfolio Apps */}
-                    <div className="start-menu__apps">
+                        {/* Portfolio Apps */}
                         {appRegistry.map((app) => (
                             <button
                                 key={app.id}

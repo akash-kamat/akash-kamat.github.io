@@ -109,7 +109,7 @@ const TerminalApp = () => {
 
     return (
         <div className="terminal-app" onClick={handleTerminalClick}>
-            {/* Terminal Output */}
+            {/* Terminal Output & Input Flow */}
             <div className="terminal-output" ref={outputRef}>
                 {history.map((entry, i) => (
                     <div
@@ -119,21 +119,32 @@ const TerminalApp = () => {
                         {entry.content}
                     </div>
                 ))}
-            </div>
 
-            {/* Terminal Input */}
-            <form className="terminal-input" onSubmit={handleSubmit}>
-                <span className="terminal-input__prompt">C:\Users\Akash&gt;</span>
-                <input
-                    ref={inputRef}
-                    type="text"
-                    className="terminal-input__field"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    autoFocus
-                    spellCheck={false}
-                />
-            </form>
+                {/* Active Input Line */}
+                <form className="terminal-input" onSubmit={handleSubmit}>
+                    <span className="terminal-input__prompt">C:\Users\Akash&gt;</span>
+
+                    <div className="terminal-input__wrapper">
+                        {/* Visual Output with Block Cursor */}
+                        <div className="terminal-input__visual">
+                            <span>{input}</span>
+                            <span className="terminal-cursor" />
+                        </div>
+
+                        {/* Invisible Real Input */}
+                        <input
+                            ref={inputRef}
+                            type="text"
+                            className="terminal-input__field ghost-input"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            autoFocus
+                            spellCheck={false}
+                            autoComplete="off"
+                        />
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };
