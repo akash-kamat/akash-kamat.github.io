@@ -1,0 +1,73 @@
+/* TerminalApp - Command Prompt Style */
+
+.terminal-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #0c0c0c;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 14px;
+    color: #cccccc;
+    cursor: text;
+}
+
+/* Terminal Output */
+.terminal-output {
+    flex: 1;
+    overflow: auto;
+    padding: 12px;
+    padding-bottom: 0;
+}
+
+.terminal-line {
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-break: break-all;
+    min-height: 1.4em;
+}
+
+.terminal-line--input {
+    color: #ffffff;
+}
+
+/* Terminal Input */
+.terminal-input {
+    display: flex;
+    align-items: center;
+    padding: 0 12px 12px;
+}
+
+.terminal-input__prompt {
+    color: #cccccc;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+.terminal-input__field {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: inherit;
+    caret-color: #ffffff;
+}
+
+/* Scrollbar */
+.terminal-output::-webkit-scrollbar {
+    width: 10px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 5px;
+}
+
+.terminal-output::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

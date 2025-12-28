@@ -1,0 +1,130 @@
+/* SkillsApp - System Monitor Style */
+
+.skills-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Header */
+.skills-header {
+    padding: 16px 20px;
+    background: linear-gradient(180deg, #252540 0%, #1a1a2e 100%);
+    border-bottom: 1px solid #333355;
+}
+
+.skills-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #ffffff;
+}
+
+.skills-header p {
+    font-size: 12px;
+    margin: 0;
+    opacity: 0.7;
+}
+
+/* Content */
+.skills-content {
+    flex: 1;
+    overflow: auto;
+    padding: 16px 20px;
+}
+
+/* Category */
+.skills-category {
+    margin-bottom: 24px;
+}
+
+.skills-category__title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #888;
+    margin: 0 0 12px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #333355;
+}
+
+.skills-category__list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Skill Item */
+.skill-item {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #333355;
+}
+
+.skill-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.skill-item__name {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.skill-item__level {
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.skill-item__bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.skill-item__fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease-out;
+    box-shadow: 0 0 10px currentColor;
+}
+
+/* Status */
+.skills-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    font-size: 12px;
+    background: #0d0d1a;
+    border-top: 1px solid #333355;
+}
+
+.skills-status__indicator {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #22c55e;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}

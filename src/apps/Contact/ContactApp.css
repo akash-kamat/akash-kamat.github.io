@@ -1,0 +1,188 @@
+/* ContactApp - Email Client Style */
+
+.contact-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Mail Header */
+.mail-header {
+    background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.mail-header__tabs {
+    display: flex;
+}
+
+.mail-header__tab {
+    padding: 10px 20px;
+    font-size: 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #666;
+    border-bottom: 2px solid transparent;
+}
+
+.mail-header__tab:hover {
+    background: rgba(0, 120, 215, 0.05);
+}
+
+.mail-header__tab--active {
+    color: #0078d4;
+    border-bottom-color: #0078d4;
+    background: rgba(0, 120, 215, 0.05);
+}
+
+/* Mail Compose */
+.mail-compose {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.mail-field {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.mail-field__label {
+    width: 60px;
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.mail-field__value {
+    font-size: 13px;
+    color: #0078d4;
+}
+
+.mail-field__input {
+    flex: 1;
+    padding: 4px 8px;
+    font-size: 13px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    outline: none;
+}
+
+.mail-field__input:focus {
+    border-color: #0078d4;
+    background: rgba(0, 120, 215, 0.02);
+}
+
+.mail-body {
+    flex: 1;
+    margin-top: 12px;
+}
+
+.mail-body__textarea {
+    width: 100%;
+    height: 100%;
+    min-height: 120px;
+    padding: 12px;
+    font-size: 13px;
+    font-family: inherit;
+    line-height: 1.5;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    resize: none;
+    outline: none;
+}
+
+.mail-body__textarea:focus {
+    border-color: #0078d4;
+}
+
+.mail-body__textarea::placeholder {
+    color: #aaa;
+}
+
+/* Quick Contact */
+.quick-contact {
+    padding: 16px;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+}
+
+.quick-contact h3 {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+}
+
+.quick-contact__links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.quick-contact__link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #333;
+    text-decoration: none;
+    background: #ffffff;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    transition: all 0.15s;
+}
+
+.quick-contact__link:hover {
+    border-color: #0078d4;
+    background: rgba(0, 120, 215, 0.05);
+    color: #0078d4;
+}
+
+.quick-contact__icon {
+    font-size: 16px;
+}
+
+/* Mail Actions */
+.mail-actions {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #f0f0f0;
+    border-top: 1px solid #d0d0d0;
+}
+
+.mail-actions__btn {
+    padding: 8px 16px;
+    font-size: 12px;
+    border: 1px solid #c0c0c0;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.15s;
+}
+
+.mail-actions__btn:hover {
+    background: linear-gradient(180deg, #e8f4fc 0%, #d0e8f8 100%);
+    border-color: #80b0d0;
+}
+
+.mail-actions__btn--primary {
+    background: linear-gradient(180deg, #0078d4 0%, #006cbd 100%);
+    border-color: #005a9e;
+    color: white;
+}
+
+.mail-actions__btn--primary:hover {
+    background: linear-gradient(180deg, #1a8fe8 0%, #0078d4 100%);
+}

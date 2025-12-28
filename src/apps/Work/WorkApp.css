@@ -1,0 +1,187 @@
+/* WorkApp - File Explorer Style */
+
+.work-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Explorer Toolbar */
+.explorer-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.explorer-toolbar__btn {
+    padding: 4px 12px;
+    font-size: 12px;
+    border: 1px solid #c0c0c0;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+    cursor: pointer;
+}
+
+.explorer-toolbar__btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.explorer-toolbar__btn:not(:disabled):hover {
+    background: linear-gradient(180deg, #e8f4fc 0%, #d0e8f8 100%);
+    border-color: #80b0d0;
+}
+
+.explorer-toolbar__address {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    background: #ffffff;
+    border: 1px solid #c0c0c0;
+    border-radius: 3px;
+}
+
+.explorer-toolbar__icon {
+    font-size: 14px;
+}
+
+.explorer-toolbar__path {
+    font-size: 12px;
+    color: #444;
+}
+
+/* Explorer Content */
+.explorer-content {
+    flex: 1;
+    overflow: auto;
+    padding: 8px;
+}
+
+/* File List */
+.explorer-files {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 8px;
+}
+
+.explorer-file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.explorer-file:hover {
+    background: rgba(0, 120, 215, 0.1);
+}
+
+.explorer-file__icon {
+    font-size: 40px;
+    margin-bottom: 4px;
+}
+
+.explorer-file__name {
+    font-size: 11px;
+    text-align: center;
+    color: #333;
+    word-break: break-word;
+}
+
+/* Project Detail */
+.project-detail {
+    padding: 16px;
+}
+
+.project-detail__header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.project-detail__icon {
+    font-size: 48px;
+}
+
+.project-detail__name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.project-detail__section {
+    margin-bottom: 16px;
+}
+
+.project-detail__section h3 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+}
+
+.project-detail__section p {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.project-detail__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.project-detail__tech-tag {
+    padding: 3px 10px;
+    font-size: 11px;
+    background: #e8f4fc;
+    color: #0078d4;
+    border-radius: 12px;
+    border: 1px solid #b8d8f0;
+}
+
+.project-detail__links {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.project-detail__link {
+    padding: 8px 16px;
+    font-size: 12px;
+    color: #0078d4;
+    text-decoration: none;
+    border: 1px solid #0078d4;
+    border-radius: 4px;
+    transition: all 0.15s;
+}
+
+.project-detail__link:hover {
+    background: #0078d4;
+    color: white;
+}
+
+/* Explorer Status Bar */
+.explorer-status {
+    padding: 4px 12px;
+    font-size: 11px;
+    color: #666;
+    background: #f0f0f0;
+    border-top: 1px solid #d0d0d0;
+}

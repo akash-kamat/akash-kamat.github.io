@@ -1,0 +1,47 @@
+/* AboutApp - Notepad Style */
+
+.about-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Notepad Menu Bar */
+.notepad-menu {
+    display: flex;
+    gap: 4px;
+    padding: 2px 8px;
+    background: #f0f0f0;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.notepad-menu__item {
+    padding: 2px 8px;
+    font-size: 12px;
+    color: #333;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.notepad-menu__item:hover {
+    background: rgba(0, 120, 215, 0.1);
+}
+
+/* Notepad Content */
+.notepad-content {
+    flex: 1;
+    overflow: auto;
+    padding: 8px;
+    background: #ffffff;
+}
+
+.notepad-text {
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #333;
+    white-space: pre;
+    margin: 0;
+}

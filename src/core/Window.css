@@ -1,0 +1,36 @@
+/* Window Styles - Override/extend 7.css */
+
+/* Make window fill the Rnd container */
+.window {
+    box-sizing: border-box;
+}
+
+/* Make title bar draggable cursor */
+.title-bar {
+    cursor: move;
+    user-select: none;
+}
+
+/* Prevent controls from being draggable */
+.title-bar-controls {
+    cursor: default;
+}
+
+.title-bar-controls button {
+    cursor: pointer;
+}
+
+/* Window body should fill remaining space */
+.window-body {
+    background: #ffffff;
+}
+
+/* Loading state inside window */
+.window-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #666;
+    font-size: 14px;
+}

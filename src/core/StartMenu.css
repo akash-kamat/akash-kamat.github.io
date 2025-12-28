@@ -1,0 +1,269 @@
+/* Windows 7 Start Menu Styles */
+
+.start-menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 9998;
+}
+
+.start-menu {
+    position: fixed;
+    bottom: 48px;
+    left: 4px;
+    display: flex;
+    width: 410px;
+    height: 500px;
+    border-radius: 8px 8px 0 8px;
+    overflow: hidden;
+    z-index: 9999;
+    /* Glass effect */
+    background: linear-gradient(to bottom,
+            rgba(30, 60, 90, 0.95) 0%,
+            rgba(20, 45, 70, 0.98) 100%);
+    border: 1px solid rgba(120, 160, 200, 0.5);
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, 0.3),
+        0 8px 32px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Left Column */
+.start-menu__left {
+    width: 55%;
+    background: rgba(255, 255, 255, 0.97);
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0;
+}
+
+.start-menu__apps {
+    flex: 0 0 auto;
+    padding: 8px 4px;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.start-menu__app {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.1s;
+}
+
+.start-menu__app:hover {
+    background: linear-gradient(to bottom,
+            rgba(60, 140, 220, 0.3) 0%,
+            rgba(40, 100, 180, 0.25) 100%);
+    border: 1px solid rgba(80, 150, 220, 0.4);
+    margin: -1px;
+}
+
+.start-menu__app-icon {
+    font-size: 24px;
+    margin-right: 10px;
+    width: 32px;
+    text-align: center;
+}
+
+.start-menu__app-name {
+    font-size: 12px;
+    color: #000;
+}
+
+.start-menu__separator {
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(0, 0, 0, 0.15),
+            transparent);
+    margin: 4px 12px;
+}
+
+.start-menu__all-programs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 24px);
+    margin: 4px 12px;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #000;
+}
+
+.start-menu__all-programs:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.start-menu__all-programs .arrow {
+    font-size: 8px;
+    color: #666;
+}
+
+/* Search Box */
+.start-menu__search {
+    margin-top: auto;
+    padding: 8px 10px;
+    background: linear-gradient(to bottom,
+            rgba(230, 235, 240, 1) 0%,
+            rgba(220, 225, 230, 1) 100%);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.start-menu__search-input {
+    width: 100%;
+    padding: 6px 10px 6px 28px;
+    border: 1px solid rgba(100, 140, 180, 0.5);
+    border-radius: 15px;
+    font-size: 12px;
+    outline: none;
+    background: white;
+}
+
+.start-menu__search-input:focus {
+    border-color: rgba(60, 140, 220, 0.8);
+    box-shadow: 0 0 4px rgba(60, 140, 220, 0.3);
+}
+
+.start-menu__search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+}
+
+/* Right Column */
+.start-menu__right {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom,
+            rgba(60, 100, 140, 0.5) 0%,
+            rgba(40, 70, 100, 0.5) 100%);
+}
+
+.start-menu__user {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.start-menu__user-avatar {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #f0f0f0 0%, #d0d0d0 100%);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-right: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.start-menu__user-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.start-menu__links {
+    flex: 1;
+    padding: 8px 0;
+    overflow-y: auto;
+}
+
+.start-menu__link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 6px 16px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.1s;
+}
+
+.start-menu__link:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.start-menu__link-icon {
+    font-size: 18px;
+    margin-right: 10px;
+    width: 24px;
+    text-align: center;
+}
+
+.start-menu__link-name {
+    font-size: 12px;
+    color: white;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+/* Shutdown */
+.start-menu__shutdown {
+    display: flex;
+    padding: 8px 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.start-menu__shutdown-btn {
+    flex: 1;
+    padding: 6px 16px;
+    border: none;
+    border-radius: 3px 0 0 3px;
+    background: linear-gradient(to bottom,
+            rgba(80, 120, 160, 0.8) 0%,
+            rgba(50, 80, 120, 0.9) 100%);
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(100, 140, 180, 0.5);
+}
+
+.start-menu__shutdown-btn:hover {
+    background: linear-gradient(to bottom,
+            rgba(100, 150, 200, 0.9) 0%,
+            rgba(70, 110, 160, 1) 100%);
+}
+
+.start-menu__shutdown-arrow {
+    padding: 6px 8px;
+    border: none;
+    border-radius: 0 3px 3px 0;
+    background: linear-gradient(to bottom,
+            rgba(80, 120, 160, 0.8) 0%,
+            rgba(50, 80, 120, 0.9) 100%);
+    color: white;
+    font-size: 8px;
+    cursor: pointer;
+    border: 1px solid rgba(100, 140, 180, 0.5);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.start-menu__shutdown-arrow:hover {
+    background: linear-gradient(to bottom,
+            rgba(100, 150, 200, 0.9) 0%,
+            rgba(70, 110, 160, 1) 100%);
+}

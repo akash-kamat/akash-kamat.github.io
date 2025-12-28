@@ -1,0 +1,153 @@
+/* ExperienceApp - Event Viewer Style */
+
+.experience-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Log Header */
+.log-header {
+    padding: 8px 12px;
+    background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.log-header__title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Log Toolbar */
+.log-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 12px;
+    background: #f4f4f4;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.log-toolbar__btn {
+    padding: 4px 12px;
+    font-size: 11px;
+    border: 1px solid #c0c0c0;
+    border-radius: 3px;
+    background: #ffffff;
+    cursor: pointer;
+    color: #444;
+}
+
+.log-toolbar__btn:hover {
+    background: #e8f4fc;
+    border-color: #80b0d0;
+}
+
+.log-toolbar__btn--active {
+    background: #0078d4;
+    color: white;
+    border-color: #0078d4;
+}
+
+.log-toolbar__count {
+    margin-left: auto;
+    font-size: 11px;
+    color: #666;
+}
+
+/* Log Content */
+.log-content {
+    flex: 1;
+    overflow: auto;
+    padding: 8px;
+    background: #fafafa;
+}
+
+/* Log Entry */
+.log-entry {
+    margin-bottom: 8px;
+    padding: 10px 12px;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    border-left: 4px solid #0078d4;
+}
+
+.log-entry--work {
+    border-left-color: #22c55e;
+}
+
+.log-entry--education {
+    border-left-color: #8b5cf6;
+}
+
+.log-entry__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+}
+
+.log-entry__timestamp {
+    color: #888;
+}
+
+.log-entry__level {
+    font-weight: 600;
+}
+
+.log-entry__level--work {
+    color: #22c55e;
+}
+
+.log-entry__level--education {
+    color: #8b5cf6;
+}
+
+.log-entry__title {
+    color: #333;
+    font-weight: 600;
+}
+
+.log-entry__details {
+    padding-left: 12px;
+    font-size: 12px;
+}
+
+.log-entry__org,
+.log-entry__period {
+    margin-bottom: 4px;
+    color: #555;
+}
+
+.log-entry__label {
+    color: #888;
+}
+
+.log-entry__desc {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px dashed #e0e0e0;
+}
+
+.log-entry__desc-item {
+    margin-bottom: 3px;
+    color: #444;
+    line-height: 1.4;
+}
+
+/* Log Status */
+.log-status {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 12px;
+    font-size: 11px;
+    color: #666;
+    background: #f0f0f0;
+    border-top: 1px solid #d0d0d0;
+}
