@@ -32,7 +32,7 @@ export const useSettingsStore = create<SettingsState>()(
             },
         }),
         {
-            name: 'os-settings-storage',
+            name: 'os-settings-v2', // Changed to invalidate old cached paths
         }
     )
 );
