@@ -16,11 +16,11 @@ export const useSettingsStore = create<SettingsState>()(
             soundEnabled: true,
             currWallpaperIndex: 0,
             wallpapers: [
-                '/src/assets/default wallpaper.jpg',
-                '/src/assets/wallpaper 1.jpg',
-                '/src/assets/wallpaper 2.jpg',
-                '/src/assets/wallpaper 3.jpg',
-                '/src/assets/wallpaper 4.jpg',
+                '/assets/default wallpaper.jpg',
+                '/assets/wallpaper 1.jpg',
+                '/assets/wallpaper 2.jpg',
+                '/assets/wallpaper 3.jpg',
+                '/assets/wallpaper 4.jpg',
             ],
             toggleSound: () => set((state) => ({ soundEnabled: !state.soundEnabled })),
             nextWallpaper: () => set((state) => ({

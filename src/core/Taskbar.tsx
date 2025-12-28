@@ -66,7 +66,7 @@ const Taskbar = () => {
                     title="Start"
                 >
                     <img
-                        src="/src/assets/windows 7 start icon.ico"
+                        src="/assets/windows 7 start icon.ico"
                         alt="Start"
                         className="windows-logo"
                     />
