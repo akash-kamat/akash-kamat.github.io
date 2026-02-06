@@ -7,9 +7,8 @@
     <script>
       (function () {
         var path = location.pathname;
-        var repo = "/" + (location.pathname.split("/")[1] || "");
-        var pathAfterRepo = path.startsWith(repo) ? path.slice(repo.length) : path;
-        var redirect = repo + "/?redirect=" + encodeURIComponent(pathAfterRepo + location.search + location.hash);
+        if (path === "/" || path.indexOf(".") !== -1) return;
+        var redirect = "/?redirect=" + encodeURIComponent(path + location.search + location.hash);
         location.replace(redirect);
       })();
     </script>
