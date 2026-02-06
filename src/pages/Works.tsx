@@ -18,13 +18,14 @@ export default function Works() {
     }, [projects]);
 
     useEffect(() => {
-        if (!supabase) return;
+        const client = supabase;
+        if (!client) return;
         let active = true;
         const init = async () => {
-            const { data: sessionData } = await supabase.auth.getSession();
+            const { data: sessionData } = await client.auth.getSession();
             if (!active) return;
             if (sessionData.session) {
-                const { data } = await supabase.rpc('is_admin');
+                const { data } = await client.rpc('is_admin');
                 if (active) setIsAdmin(Boolean(data));
                 if (active) refetch();
             } else {
@@ -32,10 +33,10 @@ export default function Works() {
             }
         };
         init();
-        const { data: listener } = supabase.auth.onAuthStateChange(async (_event, session) => {
+        const { data: listener } = client.auth.onAuthStateChange(async (_event, session) => {
             if (!active) return;
             if (session) {
-                const { data } = await supabase.rpc('is_admin');
+                const { data } = await client.rpc('is_admin');
                 if (active) setIsAdmin(Boolean(data));
                 if (active) refetch();
             } else {
@@ -57,8 +58,9 @@ export default function Works() {
         setLocalProjects((prev) =>
             prev.map((item) => (item.id === project.id ? { ...item, color } : item)),
         );
-        if (!supabase) return;
-        const { error } = await supabase.from('projects').update({ color }).eq('id', project.id);
+        const client = supabase;
+        if (!client) return;
+        const { error } = await client.from('projects').update({ color }).eq('id', project.id);
         if (error) {
             setLocalProjects((prev) =>
                 prev.map((item) => (item.id === project.id ? { ...item, color: previous } : item)),
@@ -92,7 +94,7 @@ export default function Works() {
 
     const item = {
         hidden: { opacity: 0, y: 10 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } }
+        show: { opacity: 1, y: 0, transition: { duration: 0.45 } }
     };
 
     return (

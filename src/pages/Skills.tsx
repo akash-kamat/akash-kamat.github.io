@@ -17,7 +17,7 @@ export default function Skills() {
 
   const item = {
     hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: 'easeOut' } }
+    show: { opacity: 1, y: 0, transition: { duration: 0.45 } }
   };
 
   return (
