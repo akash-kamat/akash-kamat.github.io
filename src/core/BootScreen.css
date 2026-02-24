@@ -1,0 +1,177 @@
+.boot-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a12 0%, #1a1a2e 50%, #0f0f1a 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    overflow: hidden;
+}
+
+.boot-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(50, 100, 180, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.boot-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+/* Windows Logo */
+.boot-logo {
+    margin-bottom: 34px;
+}
+
+.boot-logo__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: repeat(2, 50px);
+    gap: 4px;
+    width: 104px;
+    height: 104px;
+    transform: none;
+}
+
+.boot-logo__segment {
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    animation: flagGlow 2.2s ease-in-out infinite;
+}
+
+.boot-logo__segment--red {
+    background: linear-gradient(135deg, #f25022 0%, #ff6b4a 100%);
+    animation-delay: 0s;
+}
+
+.boot-logo__segment--green {
+    background: linear-gradient(135deg, #7fba00 0%, #9ed93a 100%);
+    animation-delay: 0.2s;
+}
+
+.boot-logo__segment--blue {
+    background: linear-gradient(135deg, #00a4ef 0%, #4fc3f7 100%);
+    animation-delay: 0.4s;
+}
+
+.boot-logo__segment--yellow {
+    background: linear-gradient(135deg, #ffb900 0%, #ffd54f 100%);
+    animation-delay: 0.6s;
+}
+
+@keyframes flagGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+        transform: translateY(-1px) scale(1.01);
+    }
+}
+
+/* Loading Orbs - Windows 7 style */
+.loading-orbs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.orb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4fc3f7 0%, #00a4ef 100%);
+    box-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
+    animation: orbMove 2s ease-in-out infinite;
+}
+
+.orb-1 { animation-delay: 0s; }
+.orb-2 { animation-delay: 0.15s; }
+.orb-3 { animation-delay: 0.3s; }
+.orb-4 { animation-delay: 0.45s; }
+.orb-5 { animation-delay: 0.6s; }
+
+@keyframes orbMove {
+    0%, 100% {
+        transform: translateX(-60px) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        transform: translateX(-30px) scale(0.8);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+    80% {
+        transform: translateX(30px) scale(0.8);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(60px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Boot Text */
+.boot-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 16px;
+    font-family: 'Segoe UI', sans-serif;
+    letter-spacing: 0.4px;
+    min-width: 340px;
+    text-align: center;
+}
+
+/* Footer */
+.boot-footer {
+    padding: 30px;
+    text-align: center;
+}
+
+.boot-copyright {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: 'Segoe UI', sans-serif;
+    margin-bottom: 5px;
+}
+
+.boot-version {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Starting phase */
+.boot-starting {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.boot-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

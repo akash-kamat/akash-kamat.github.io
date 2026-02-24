@@ -1,5 +1,6 @@
 import { useWindowStore } from '../state/windowStore';
-import { appRegistry } from '../utils/windowRegistry';
+import { appRegistry, getAppById } from '../utils/windowRegistry';
+import { soundManager } from '../utils/soundManager';
 import './StartMenu.css';
 
 interface StartMenuProps {
@@ -13,34 +14,46 @@ const StartMenu = ({ isOpen, onClose }: StartMenuProps) => {
     if (!isOpen) return null;
 
     const handleAppClick = (appId: string, title: string, defaultSize?: { width: number; height: number }) => {
+        soundManager.playClick();
         openWindow(appId, title, defaultSize);
         onClose();
     };
 
-    // Dummy apps for start menu
+    // Pinned apps (working apps from allApps)
     const pinnedApps = [
-        { id: 'getting-started', name: 'Getting Started', icon: '🚀' },
         { id: 'browser', name: 'Internet Explorer', icon: '🌐' },
         { id: 'media-player', name: 'Windows Media Player', icon: '🎵' },
         { id: 'calculator', name: 'Calculator', icon: '🔢' },
         { id: 'sticky-notes', name: 'Sticky Notes', icon: '📝' },
-        { id: 'snipping-tool', name: 'Snipping Tool', icon: '✂️' },
         { id: 'paint', name: 'Paint', icon: '🎨' },
-        { id: 'magnifier', name: 'Magnifier', icon: '🔍' },
         { id: 'solitaire', name: 'Solitaire', icon: '🃏' },
     ];
 
     const rightLinks = [
-        { id: 'documents', name: 'Documents', icon: '📁' },
-        { id: 'pictures', name: 'Pictures', icon: '🖼️' },
-        { id: 'music', name: 'Music', icon: '🎵' },
-        { id: 'games', name: 'Games', icon: '🎮' },
-        { id: 'computer', name: 'Computer', icon: '💻' },
-        { id: 'control-panel', name: 'Control Panel', icon: '⚙️' },
-        { id: 'devices', name: 'Devices and Printers', icon: '🖨️' },
-        { id: 'default-programs', name: 'Default Programs', icon: '📋' },
-        { id: 'help', name: 'Help and Support', icon: '❓' },
+        { id: 'work', name: 'Documents (Work)', icon: '📁', appId: 'work' },
+        { id: 'skills', name: 'System Info', icon: '⚙️', appId: 'skills' },
+        { id: 'experience', name: 'Event Log', icon: '📋', appId: 'experience' },
+        { id: 'contact', name: 'Mail', icon: '✉️', appId: 'contact' },
+        { id: 'terminal', name: 'Command Prompt', icon: '💻', appId: 'terminal' },
+        { id: 'help', name: 'Help and Support', icon: '❓', appId: 'help' },
     ];
+
+    const handleRightLinkClick = (link: typeof rightLinks[0]) => {
+        soundManager.playClick();
+        const app = getAppById(link.appId);
+        if (app) {
+            openWindow(app.id, app.title, app.defaultSize);
+        }
+        onClose();
+    };
+
+    const handleShutdown = () => {
+        soundManager.playClose();
+        // Fun shutdown
+        if (confirm('🔌 Are you sure you want to shut down?\n\n(This will just refresh the page)')) {
+            window.location.reload();
+        }
+    };
 
     return (
         <>
@@ -50,27 +63,28 @@ const StartMenu = ({ isOpen, onClose }: StartMenuProps) => {
             <div className="start-menu">
                 {/* Left Column - Apps */}
                 <div className="start-menu__left">
-                    {/* Pinned Apps */}
                     {/* Combined Apps List */}
                     <div className="start-menu__apps">
                         {/* Pinned Apps */}
-                        {pinnedApps.map((app) => (
-                            <button
-                                key={app.id}
-                                className="start-menu__app"
-                                onClick={() => {
-                                    const regApp = appRegistry.find(a => a.id === app.id);
-                                    if (regApp) {
-                                        handleAppClick(regApp.id, regApp.title, regApp.defaultSize);
-                                    } else {
-                                        onClose();
-                                    }
-                                }}
-                            >
-                                <span className="start-menu__app-icon">{app.icon}</span>
-                                <span className="start-menu__app-name">{app.name}</span>
-                            </button>
-                        ))}
+                        {pinnedApps.map((app) => {
+                            const regApp = getAppById(app.id);
+                            return (
+                                <button
+                                    key={app.id}
+                                    className="start-menu__app"
+                                    onClick={() => {
+                                        if (regApp) {
+                                            handleAppClick(regApp.id, regApp.title, regApp.defaultSize);
+                                        }
+                                    }}
+                                >
+                                    <span className="start-menu__app-icon">{app.icon}</span>
+                                    <span className="start-menu__app-name">{app.name}</span>
+                                </button>
+                            );
+                        })}
+
+                        <div className="start-menu__separator" />
 
                         {/* Portfolio Apps */}
                         {appRegistry.map((app) => (
@@ -107,14 +121,18 @@ const StartMenu = ({ isOpen, onClose }: StartMenuProps) => {
                 <div className="start-menu__right">
                     {/* User Profile */}
                     <div className="start-menu__user">
-                        <div className="start-menu__user-avatar">👤</div>
+                        <div className="start-menu__user-avatar">👨‍💻</div>
                         <span className="start-menu__user-name">Akash Kamat</span>
                     </div>
 
                     {/* Links */}
                     <div className="start-menu__links">
                         {rightLinks.map((link) => (
-                            <button key={link.id} className="start-menu__link">
+                            <button 
+                                key={link.id} 
+                                className="start-menu__link"
+                                onClick={() => handleRightLinkClick(link)}
+                            >
                                 <span className="start-menu__link-icon">{link.icon}</span>
                                 <span className="start-menu__link-name">{link.name}</span>
                             </button>
@@ -123,7 +141,7 @@ const StartMenu = ({ isOpen, onClose }: StartMenuProps) => {
 
                     {/* Shutdown */}
                     <div className="start-menu__shutdown">
-                        <button className="start-menu__shutdown-btn">
+                        <button className="start-menu__shutdown-btn" onClick={handleShutdown}>
                             Shut down
                         </button>
                         <button className="start-menu__shutdown-arrow">▶</button>

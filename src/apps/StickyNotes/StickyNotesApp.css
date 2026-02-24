@@ -1,0 +1,122 @@
+.sticky-notes-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.sticky-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.sticky-title {
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.add-note-btn {
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.add-note-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.notes-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    overflow: auto;
+}
+
+.sticky-note {
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    min-height: 180px;
+    animation: noteAppear 0.3s ease;
+}
+
+@keyframes noteAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.8) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.note-btn {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.note-btn:hover {
+    opacity: 1;
+}
+
+.delete-btn:hover {
+    color: #d32f2f;
+}
+
+.note-content {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 10px 15px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+}
+
+.note-content::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.sticky-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+}
+
+.footer-message {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-disclaimer {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}

@@ -1,0 +1,118 @@
+.calculator-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(180deg, #e8e8e8 0%, #d0d0d0 100%);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.calc-display {
+    background: linear-gradient(180deg, #2d2d30 0%, #1e1e1e 100%);
+    padding: 15px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+}
+
+.calc-display__value {
+    font-size: 36px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    color: #00ff00;
+    text-align: right;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    min-height: 45px;
+    word-break: break-all;
+}
+
+.calc-troll-message {
+    font-size: 11px;
+    color: #ffcc00;
+    text-align: right;
+    margin-top: 5px;
+    font-style: italic;
+    animation: trollFade 0.3s ease-out;
+}
+
+@keyframes trollFade {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.calc-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 10px;
+    flex: 1;
+}
+
+.calc-btn {
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+    border: 1px solid #b0b0b0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.calc-btn:hover {
+    background: linear-gradient(180deg, #f5f5f5 0%, #d5d5d5 100%);
+}
+
+.calc-btn:active {
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calc-btn--function {
+    background: linear-gradient(180deg, #a0a0a0 0%, #808080 100%);
+    color: white;
+    border-color: #606060;
+}
+
+.calc-btn--function:hover {
+    background: linear-gradient(180deg, #909090 0%, #707070 100%);
+}
+
+.calc-btn--operator {
+    background: linear-gradient(180deg, #ff9500 0%, #e08600 100%);
+    color: white;
+    border-color: #c07000;
+}
+
+.calc-btn--operator:hover {
+    background: linear-gradient(180deg, #ffaa30 0%, #f09000 100%);
+}
+
+.calc-btn--equals {
+    background: linear-gradient(180deg, #34c759 0%, #28a745 100%);
+    color: white;
+    border-color: #1e7b34;
+}
+
+.calc-btn--equals:hover {
+    background: linear-gradient(180deg, #40d865 0%, #32b350 100%);
+}
+
+.calc-btn--zero {
+    grid-column: span 2;
+}
+
+.calc-disclaimer {
+    font-size: 10px;
+    color: #888;
+    text-align: center;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #ccc;
+}

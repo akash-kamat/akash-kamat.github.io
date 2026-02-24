@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Rnd } from 'react-rnd';
 import { motion, AnimatePresence } from 'motion/react';
 import type { WindowState } from '../state/windowStore';
@@ -22,26 +22,20 @@ const Window = ({ windowState, children }: WindowProps) => {
         activeWindowId,
     } = useWindowStore();
 
-    const [localPosition, setLocalPosition] = useState(windowState.position);
-    const [localSize, setLocalSize] = useState(windowState.size);
     const [isClosing, setIsClosing] = useState(false);
-
-    const rndRef = useRef<Rnd>(null);
     const isActive = activeWindowId === windowState.id;
 
     useEffect(() => {
         soundManager.init();
     }, []);
 
-    useEffect(() => {
-        if (windowState.isMaximized) {
-            setLocalPosition({ x: 0, y: 0 });
-            setLocalSize({ width: window.innerWidth, height: window.innerHeight - 40 });
-        } else {
-            setLocalPosition(windowState.position);
-            setLocalSize(windowState.size);
-        }
-    }, [windowState.isMaximized]);
+    const calculatedPosition = windowState.isMaximized
+        ? { x: 0, y: 0 }
+        : windowState.position;
+
+    const calculatedSize = windowState.isMaximized
+        ? { width: window.innerWidth, height: window.innerHeight - 40 }
+        : windowState.size;
 
     const handleClose = (e: React.MouseEvent) => {
         e.stopPropagation();
@@ -72,7 +66,6 @@ const Window = ({ windowState, children }: WindowProps) => {
     };
 
     const handleDragStop = (_e: unknown, data: { x: number; y: number }) => {
-        setLocalPosition({ x: data.x, y: data.y });
         updateWindowPosition(windowState.id, { x: data.x, y: data.y });
     };
 
@@ -87,8 +80,6 @@ const Window = ({ windowState, children }: WindowProps) => {
             width: parseInt(ref.style.width, 10),
             height: parseInt(ref.style.height, 10),
         };
-        setLocalSize(newSize);
-        setLocalPosition(position);
         updateWindowSize(windowState.id, newSize);
         updateWindowPosition(windowState.id, position);
     };
@@ -100,9 +91,8 @@ const Window = ({ windowState, children }: WindowProps) => {
         <AnimatePresence>
             {!windowState.isMinimized && !isClosing && (
                 <Rnd
-                    ref={rndRef}
-                    position={localPosition}
-                    size={localSize}
+                    position={calculatedPosition}
+                    size={calculatedSize}
                     minWidth={300}
                     minHeight={200}
                     bounds="parent"
@@ -120,7 +110,7 @@ const Window = ({ windowState, children }: WindowProps) => {
                         exit={{
                             opacity: 0,
                             scale: 0.5,
-                            y: taskbarY - localPosition.y,
+                            y: taskbarY - calculatedPosition.y,
                             transition: { duration: 0.2 }
                         }}
                         transition={{

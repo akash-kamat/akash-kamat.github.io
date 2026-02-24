@@ -24,6 +24,15 @@
   padding: 10px;
 }
 
+.desktop-selection-box {
+  position: fixed;
+  border: 1px solid rgba(78, 147, 255, 0.95);
+  background-color: rgba(78, 147, 255, 0.22);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+  z-index: 10;
+}
+
 /* Desktop Icon Styles */
 /* ... existing icon styles ... */
 

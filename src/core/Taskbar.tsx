@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useWindowStore } from '../state/windowStore';
 import { useSettingsStore } from '../state/settingsStore';
 import { getAppById } from '../utils/windowRegistry';
+import { soundManager } from '../utils/soundManager';
 import StartMenu from './StartMenu';
 import './Taskbar.css';
 
@@ -25,6 +26,7 @@ const Taskbar = () => {
     }, []);
 
     const handleTaskbarItemClick = (windowId: string, isMinimized: boolean) => {
+        soundManager.playClick();
         if (isMinimized) {
             restoreWindow(windowId);
         } else if (activeWindowId === windowId) {
@@ -32,6 +34,16 @@ const Taskbar = () => {
         } else {
             focusWindow(windowId);
         }
+    };
+
+    const handleStartClick = () => {
+        soundManager.playClick();
+        setStartMenuOpen(!startMenuOpen);
+    };
+
+    const handleSoundToggle = () => {
+        soundManager.playClick();
+        toggleSound();
     };
 
     const formatTime = (date: Date) => {
@@ -62,7 +74,7 @@ const Taskbar = () => {
                 {/* Start Button */}
                 <button
                     className={`start-button ${startMenuOpen ? 'active' : ''}`}
-                    onClick={() => setStartMenuOpen(!startMenuOpen)}
+                    onClick={handleStartClick}
                     title="Start"
                 >
                     <img
@@ -109,7 +121,7 @@ const Taskbar = () => {
                     </button>
                     <button
                         className="tray-icon"
-                        onClick={toggleSound}
+                        onClick={handleSoundToggle}
                         title={soundEnabled ? 'Volume: On' : 'Volume: Muted'}
                         style={{ width: '20px', fontSize: '16px' }}
                     >

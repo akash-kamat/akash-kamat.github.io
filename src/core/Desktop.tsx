@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useWindowStore } from '../state/windowStore';
 import { useSettingsStore } from '../state/settingsStore';
 import { appRegistry } from '../utils/windowRegistry';
+import { soundManager } from '../utils/soundManager';
 import DesktopIcon from './DesktopIcon';
 import './Desktop.css';
 
@@ -18,7 +19,26 @@ const Desktop = () => {
     const currentWallpaper = getCurrentWallpaper();
 
     const [contextMenu, setContextMenu] = useState<{ visible: boolean; x: number; y: number } | null>(null);
+    const [selectionBox, setSelectionBox] = useState<{
+        visible: boolean;
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }>({
+        visible: false,
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0,
+    });
     const desktopRef = useRef<HTMLDivElement>(null);
+    const dragStartRef = useRef<{ x: number; y: number } | null>(null);
+
+    // Initialize sound manager
+    useEffect(() => {
+        soundManager.init();
+    }, []);
 
     // Initialize icons if empty
     useEffect(() => {
@@ -44,6 +64,7 @@ const Desktop = () => {
 
     const handleContextMenu = (e: React.MouseEvent) => {
         e.preventDefault();
+        soundManager.playClick();
         setContextMenu({
             visible: true,
             x: e.clientX,
@@ -52,6 +73,7 @@ const Desktop = () => {
     };
 
     const handleNextWallpaper = () => {
+        soundManager.playClick();
         nextWallpaper();
         setContextMenu(null);
     };
@@ -59,15 +81,63 @@ const Desktop = () => {
     const handleOpenApp = (id: string) => {
         const icon = icons.find(i => i.id === id);
         if (icon) {
+            soundManager.playOpen();
             openWindow(icon.appId, icon.title);
         }
     };
+
+    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (e.button !== 0) return;
+
+        const target = e.target as HTMLElement;
+        if (target.closest('.desktop-icon') || target.closest('.context-menu')) return;
+
+        dragStartRef.current = { x: e.clientX, y: e.clientY };
+        setSelectionBox({
+            visible: true,
+            x: e.clientX,
+            y: e.clientY,
+            width: 0,
+            height: 0,
+        });
+    };
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!dragStartRef.current) return;
+
+        const startX = dragStartRef.current.x;
+        const startY = dragStartRef.current.y;
+        const currentX = e.clientX;
+        const currentY = e.clientY;
+
+        setSelectionBox({
+            visible: true,
+            x: Math.min(startX, currentX),
+            y: Math.min(startY, currentY),
+            width: Math.abs(currentX - startX),
+            height: Math.abs(currentY - startY),
+        });
+    };
+
+    const handleMouseUp = () => {
+        dragStartRef.current = null;
+        setSelectionBox((prev) => ({ ...prev, visible: false, width: 0, height: 0 }));
+    };
+
+    useEffect(() => {
+        const stopSelection = () => handleMouseUp();
+        window.addEventListener('mouseup', stopSelection);
+        return () => window.removeEventListener('mouseup', stopSelection);
+    }, []);
 
     return (
         <div
             ref={desktopRef}
             className="desktop"
             onClick={() => selectIcon(null)}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
             onContextMenu={handleContextMenu}
             style={{ backgroundImage: `url('${currentWallpaper}')` }}
         >
@@ -85,6 +155,18 @@ const Desktop = () => {
                     />
                 ))}
             </div>
+
+            {selectionBox.visible && (
+                <div
+                    className="desktop-selection-box"
+                    style={{
+                        left: selectionBox.x,
+                        top: selectionBox.y,
+                        width: selectionBox.width,
+                        height: selectionBox.height,
+                    }}
+                />
+            )}
 
             {/* Context Menu */}
             {contextMenu && contextMenu.visible && (

@@ -1,0 +1,253 @@
+.solitaire-app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: linear-gradient(180deg, #0d5c0d 0%, #0a4a0a 100%);
+}
+
+.solitaire-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.solitaire-stats {
+    display: flex;
+    gap: 20px;
+    color: white;
+    font-size: 14px;
+}
+
+.new-game-btn {
+    padding: 6px 15px;
+    background: linear-gradient(180deg, #4a7c4a 0%, #3a6c3a 100%);
+    color: white;
+    border: 1px solid #2a5c2a;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.troll-message {
+    background: rgba(255, 200, 0, 0.9);
+    color: #333;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 14px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+.solitaire-game {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.solitaire-top {
+    display: flex;
+    gap: 10px;
+}
+
+.stock-pile,
+.waste-pile,
+.foundation {
+    width: 70px;
+    height: 95px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.stock-pile,
+.waste-pile {
+    background: rgba(0, 0, 0, 0.2);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+.foundation {
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.foundation-suit {
+    font-size: 30px;
+    opacity: 0.5;
+    color: white;
+}
+
+.foundation-suit.red {
+    color: #ff6b6b;
+}
+
+.spacer {
+    width: 70px;
+}
+
+.card {
+    width: 70px;
+    height: 95px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.1s;
+    position: absolute;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-back {
+    background: linear-gradient(135deg, #1a237e 0%, #283593 50%, #1a237e 100%);
+    border: 2px solid #3949ab;
+    font-size: 24px;
+}
+
+.card-front {
+    background: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card-front.red {
+    color: #d32f2f;
+}
+
+.card-front.black {
+    color: #212121;
+}
+
+.card-corner {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.solitaire-tableau {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+}
+
+.tableau-column {
+    position: relative;
+    width: 70px;
+}
+
+.solitaire-footer {
+    padding: 8px 15px;
+    background: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    text-align: center;
+}
+
+/* Win Screen */
+.solitaire-win {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.win-animation {
+    text-align: center;
+    color: white;
+    z-index: 10;
+}
+
+.win-animation h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
+}
+
+.win-subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.card-rain {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.falling-card {
+    position: absolute;
+    font-size: 30px;
+    animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-50px) rotate(0deg);
+    }
+    to {
+        transform: translateY(500px) rotate(360deg);
+    }
+}
+
+.win-animation button,
+.troll-screen button {
+    padding: 12px 30px;
+    font-size: 16px;
+    background: linear-gradient(180deg, #ffd700 0%, #ffb700 100%);
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Troll Screen */
+.solitaire-troll {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.troll-screen {
+    text-align: center;
+    color: white;
+    padding: 40px;
+}
+
+.troll-screen h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.troll-stats {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 20px 0;
+}
+
+.troll-advice {
+    color: #ffd700;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
